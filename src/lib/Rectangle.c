@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 
 /* Your code here to define the struct */
 
@@ -33,7 +34,7 @@ void *new_Rectangle(char *input)
 void dump_Rectangle(void *self, FILE *fp)
 {
     Rectangle *this_rectangle = (Rectangle *)self;
-    fprintf(fp, "%d %d\n", this_rectangle->height, this_rectangle->width);
+fprintf(fp, "%" PRIu64 " %" PRIu64 "\n", this_rectangle->height, this_rectangle->width);
 }
 
 int cmp_Rectangle(void *self, void *other)
@@ -41,12 +42,16 @@ int cmp_Rectangle(void *self, void *other)
     Rectangle *rect1 = (Rectangle *)self;
     Rectangle *rect2 = (Rectangle *)other;
 
-    int area1 = rect1->height * rect1->width;
-    int area2 = rect2->height * rect2->width;
+    uint64_t area1 = rect1->height * rect1->width;
+    uint64_t area2 = rect2->height * rect2->width;
 
-    if (area1 != area2)
+    if (area1 > area2)
     {
-        return area1 - area2;
+        return 1; 
+    }
+    else if (area1 < area2)
+    {
+        return -1; 
     }
     else
     {
