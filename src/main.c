@@ -46,28 +46,22 @@ int main(int argc, char const *argv[])
     (void)!fgets(tmp, MAX_LEN, input);
     /* Your code here to initialize the objects */
     array[i] = ctor(tmp);
-    (*array[i])->dump(array[i], stdout);
-    printf("\n");
+
   }
 
   // Sort n objects.
   quick_sort(array, n);
 
   // Print n objects to output using dump.
-  // for (int i = 0; i < n; i++)
-  // {
-  //   /* Your code here to print the sorted objects */
-  //   array[i]->dump(array[i], output);
-  // }
-
-  /* Your code here to de-allocate the memories we have allocated. */
-  printf("\n");
   for (int i = 0; i < n; i++)
   {
 
     (*array[i])->dump(array[i], stdout);
     printf("\n");
   }
+
+  /* Your code here to de-allocate the memories we have allocated. */
+
 
   Destructor dtor = get_destructor(type);
   for (int i = 0; i < n; i++)

@@ -8,6 +8,7 @@
 
 typedef struct Student {
   /* Your code here to declare the struct */
+  int i;
 } Student;
 
 void *new_Student(char *);

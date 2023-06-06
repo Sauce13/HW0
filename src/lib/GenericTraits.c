@@ -36,10 +36,6 @@ Destructor get_destructor(char *type_name)
 void add_ctor_dtor(char *type_name, Constructor ctor, Destructor dtor)
 {
   /* Your code here to register the struct */
-  if (num_types >= MAX_TYPES)
-  {
-    return 0;
-  }
 
   type_names[num_types] = strdup(type_name);
   constructors[num_types] = ctor;
