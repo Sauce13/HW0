@@ -6,9 +6,11 @@
 #include <stdlib.h>
 
 /// Human only have a name.
-typedef struct Human {
+typedef struct Human
+{
   /* Your code here to declare the struct */
-  int i;
+  GenericTraits *impl;
+  char name[256];
 } Human;
 
 void *new_Human(char *);
