@@ -6,9 +6,11 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-typedef struct Student {
+typedef struct Student
+{
   /* Your code here to declare the struct */
-  int i;
+  Human base;
+  int grade;
 } Student;
 
 void *new_Student(char *);
