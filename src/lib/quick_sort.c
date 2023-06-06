@@ -2,20 +2,39 @@
 #include "GenericTraits.h"
 #include <stdlib.h>
 
-int comparator(const void *p, const void *q)
+void swap(GenericTraits ***a, GenericTraits ***b)
 {
-  GenericTraits *a = *(GenericTraits **)p;
-  GenericTraits *b = *(GenericTraits **)q;
+  GenericTraits **temp = *a;
+  *a = *b;
+  *b = temp;
+}
+int partition(GenericTraits **array[], int low, int high)
+{
+  int i = (low - 1);
+  for (int j = low; j <= high - 1; j++)
+  {
+    if ((*array[j])->cmp(array[j], array[high]) < 0)
+    {
+      i++;
+      swap(&array[i], &array[j]);
+    }
+  }
 
-  printf("In comparator: a->new=%p, a->dump=%p, a->cmp=%p, a->drop=%p\n",
-         a->new, a->dump, a->cmp, a->drop);
-  printf("In comparator: b->new=%p, b->dump=%p, b->cmp=%p, b->drop=%p\n",
-         b->new, b->dump, b->cmp, b->drop);
+  swap(&array[i + 1], &array[high]);
+  return (i + 1);
+}
 
-  return a->cmp(a, b);
+void quick_sort_helper(GenericTraits **array[], int low, int high)
+{
+  if (low < high)
+  {
+    int pi = partition(array, low, high);
+    quick_sort_helper(array, low, pi - 1);
+    quick_sort_helper(array, pi + 1, high);
+  }
 }
 
 void quick_sort(GenericTraits **array[], int n)
 {
-  qsort(array, n, sizeof(GenericTraits *), comparator);
+  quick_sort_helper(array, 0, n - 1);
 }

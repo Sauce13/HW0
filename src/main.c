@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
   Constructor ctor = get_constructor(type);
   // Read the following n objects from the input.
   // Initialize them using prototype.
-  GenericTraits **array = malloc(n * sizeof(GenericTraits *));
+  GenericTraits **array[n];
   char tmp[MAX_LEN];
   for (int i = 0; i < n; i++)
   {
@@ -46,32 +46,34 @@ int main(int argc, char const *argv[])
     (void)!fgets(tmp, MAX_LEN, input);
     /* Your code here to initialize the objects */
     array[i] = ctor(tmp);
-  }
-
-  for (int i = 0; i < n; i++)
-  {
-    /* Your code here to print the sorted objects */
-    printf("In main: new=%p, dump=%p, cmp=%p, drop=%p at address %p\n",
-           array[i]->new, array[i]->dump, array[i]->cmp, array[i]->drop, array[i]);
+    (*array[i])->dump(array[i], stdout);
+    printf("\n");
   }
 
   // Sort n objects.
   quick_sort(array, n);
 
   // Print n objects to output using dump.
-  for (int i = 0; i < n; i++)
-  {
-    /* Your code here to print the sorted objects */
-    array[i]->dump(array[i], output);
-  }
+  // for (int i = 0; i < n; i++)
+  // {
+  //   /* Your code here to print the sorted objects */
+  //   array[i]->dump(array[i], output);
+  // }
 
   /* Your code here to de-allocate the memories we have allocated. */
+  printf("\n");
+  for (int i = 0; i < n; i++)
+  {
+
+    (*array[i])->dump(array[i], stdout);
+    printf("\n");
+  }
+
   Destructor dtor = get_destructor(type);
   for (int i = 0; i < n; i++)
   {
     dtor(array[i]);
   }
-  free(array);
   // Close the files we opened.
   if (outputGiven)
     fclose(output);

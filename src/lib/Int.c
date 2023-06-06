@@ -13,9 +13,6 @@ void *new_Int(char *string)
     i->impl->cmp = cmp_Int;
     i->impl->drop = drop_Int;
 
-    printf("In new_Int: new=%p, dump=%p, cmp=%p, at address %p\n",
-           i->impl->new, i->impl->dump, i->impl->cmp, i->impl->drop, i->impl);
-
     i->i = atoi(string);
 
     return i;
