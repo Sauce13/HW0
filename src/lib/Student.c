@@ -54,7 +54,6 @@ void drop_Student(void *self)
 {
     Student *s = (Student *)self;
     drop_Human(&s->base);
-    free(s);
 }
 
 void __attribute__((constructor)) register_Student()
