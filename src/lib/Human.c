@@ -54,8 +54,9 @@ int cmp_Human(void *self, void *other)
 
 void drop_Human(void *self)
 {
-    free(self);
-}
+    Human *i = (Human *)self;
+    free(i->impl);
+    free(i);}
 
 void __attribute__((constructor)) register_Human()
 {
