@@ -21,7 +21,7 @@ void *new_Int(char *string)
 void dump_Int(void *self, FILE *fp)
 {
     Int *i = (Int *)self;
-    fprintf(fp, "0x%X", i->i);
+    fprintf(fp, "0x%x\n", i->i);
 }
 
 int cmp_Int(void *self, void *other)

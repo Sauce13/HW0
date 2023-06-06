@@ -56,8 +56,7 @@ int main(int argc, char const *argv[])
   for (int i = 0; i < n; i++)
   {
 
-    (*array[i])->dump(array[i], stdout);
-    printf("\n");
+    (*array[i])->dump(array[i], output);
   }
 
   /* Your code here to de-allocate the memories we have allocated. */
